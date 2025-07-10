@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
  * without reordering memory operations.
  *
  */
-public class UnsafeLoadFenceTest {
+public class UnsafeLoadFenceDemo {
 
     static class Data {
         boolean flag = false;
