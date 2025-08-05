@@ -1,7 +1,7 @@
 package org.siyue.funstaff.concurrent;
 
 public class UnsafeIntegerIncrementDemo {
-    static Integer count = 0;
+    static volatile Integer count = 0;
 
     /**
      *

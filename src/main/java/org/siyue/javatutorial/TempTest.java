@@ -1,9 +1,23 @@
 package org.siyue.javatutorial;
 
+import java.util.Date;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class TempTest {
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("Main thread starts");
-        Thread.currentThread().join(); // 自己等自己
-        System.out.println("This line will never be printed");
+        AbstractQueuedSynchronizer aqs = new AbstractQueuedSynchronizer() {
+            @Override
+            protected boolean tryAcquire(int arg) {
+                return false;
+            }
+
+            @Override
+            protected boolean tryRelease(int arg) {
+                return false;
+            }
+        };
+        System.out.println("AbstractQueuedSynchronizer created: " + aqs);
+        ReentrantLock reentrantLock = new ReentrantLock();
     }
 }
