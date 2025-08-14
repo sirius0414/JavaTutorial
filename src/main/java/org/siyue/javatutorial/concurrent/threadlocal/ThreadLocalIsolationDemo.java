@@ -1,5 +1,9 @@
 package org.siyue.javatutorial.concurrent.threadlocal;
 
+/**
+ * 线程间隔离：不同线程的 reqId 不同。
+ * 方法间共享：同一线程的 methodA 和 methodB 访问的是同一个 reqId，没有通过方法参数传递。
+ */
 public class ThreadLocalIsolationDemo {
 
     // ThreadLocal：同线程内共享，不同线程隔离
