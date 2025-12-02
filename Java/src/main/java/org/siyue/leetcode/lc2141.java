@@ -15,7 +15,7 @@ public class lc2141 {
 
     static class Solution {
         public long maxRunTime(int n, int[] batteries) {
-            long PowerSum = Arrays.stream(batteries).sum();
+            long PowerSum = Arrays.stream(batteries).asLongStream().sum();
             long UpperBound = PowerSum / n + 1;
             long LowerBound = 1;
             // 二分开始
@@ -41,7 +41,7 @@ public class lc2141 {
             return LowerBound - 1;
         }
 
-        public boolean canRun (long Time, int[] batteries, long n) {
+        public boolean canRun (long Time, int[] batteries, int n) {
             // Has a result distribution as 'TTT...FFF'
             long PowerRequired = n * Time;
             long PowerSupply = 0;
