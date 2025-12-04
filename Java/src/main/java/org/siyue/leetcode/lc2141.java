@@ -1,8 +1,6 @@
 package org.siyue.leetcode;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class lc2141 {
     public static void main(String[] args) throws InterruptedException {
