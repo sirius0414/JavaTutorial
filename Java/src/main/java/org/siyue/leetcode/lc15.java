@@ -1,61 +1,65 @@
 package org.siyue.leetcode;
 
+import java.util.*;
+
 public class lc15 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
-        String[] str = new String[]{"flower","flow","flight"};
-        String result = solution.longestCommonPrefix(str);
+        int[] nums = {0,0,0,0};
+        List<List<Integer>> result = solution.threeSum(nums);
         System.out.println(result);
     }
 
     static class Solution {
-        public String longestCommonPrefix(String[] strs) {
-            if (strs == null || strs.length == 0) {
-                return "";
-            } else {
-                String prefix = strs[0];
-                Integer ptr = prefix.length();
-                Solution.IntStringResult isr = new Solution.IntStringResult(ptr, prefix);
-                for (int i = 0; i < strs.length; i++) {
-                    isr = findPrefix(strs[i], ptr, prefix);
-                    if (isr.number == -1) {
-                        return "";
+        public List<List<Integer>> threeSum(int[] nums) {
+            int n = nums.length;
+            Arrays.sort(nums);
+            List<List<Integer>> result = new ArrayList<>();
+
+            if (n == 3) {
+                int sum = nums[0] + nums[1] + nums[2];
+                if (sum == 0) {
+                    result.add(Arrays.asList(nums[0], nums[1], nums[2]));
+                    return result;
+                } else {
+                    return result;
+                }
+            }
+
+            for (int i = 0; i < n - 2; i++) {
+
+                if (i > 0 && nums[i] == nums[i - 1]) {
+                    continue; // dedup i
+                }
+
+                int leftPointer = i + 1;
+                int rightPointer = n - 1;
+
+                while (leftPointer < rightPointer) {
+                    int sum = nums[i] + nums[leftPointer] + nums[rightPointer];
+
+                    if (sum < 0) {
+                        leftPointer++;
+                    } else if (sum > 0) {
+                        rightPointer--;
                     } else {
-                        ptr = isr.number;
-                        prefix = isr.text;
+                        result.add(Arrays.asList(nums[i], nums[leftPointer], nums[rightPointer]));
+                        int leftval = nums[leftPointer];
+                        int rightval = nums[rightPointer];
+
+                        while (leftPointer < rightPointer && nums[leftPointer] == leftval) {
+                            leftPointer++;
+                        }
+
+                        while (leftPointer < rightPointer && nums[rightPointer] == rightval) {
+                            rightPointer--;
+                        }
                     }
                 }
-                return isr.text;
-            }
-        }
-
-        public Solution.IntStringResult findPrefix(String str, Integer ptr, String prefix) {
-            int length = Math.min(prefix.length(),  str.length());
-            String strCompare = str.substring(0, length);
-            String prefixCompare = prefix.substring(0, length);
-
-            while (strCompare.length() > 0) {
-                if (strCompare.equals(prefixCompare)) {
-                    prefixCompare = strCompare;
-                    return new Solution.IntStringResult(ptr, prefixCompare);
-                }
-                strCompare = strCompare.substring(0,strCompare.length()-1);
-                prefixCompare = prefixCompare.substring(0,prefixCompare.length()-1);
-            }
-            return new Solution.IntStringResult(-1, "");
-        }
-
-        public class IntStringResult {
-            private final int number;
-            private final String text;
-
-            public IntStringResult(int number, String text) {
-                this.number = number;
-                this.text = text;
             }
 
-            public int getNumber() { return number; }
-            public String getText() { return text; }
+            return result;
+
         }
     }
 }
