@@ -1,5 +1,6 @@
 这是一个JavaTutorial工程，里面是学习java时需要验证的一些DEMO，工程架构如下：
 
+```
 JavaTutorial/
 ├── pom.xml
 └── src/
@@ -26,3 +27,4 @@ JavaTutorial/
 └── java/
 └── org/siyue/javatutorial/
 └── ...                 // 各模块的测试代码
+```
