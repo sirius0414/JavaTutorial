@@ -23,7 +23,9 @@ public class lc239 {
             for (int i = 0; i < n; i++) {
                 // 1) Remove indices out of window [i-k+1, i]
                 int left = i - k + 1;
+                // left就是窗口左侧下标
                 while (!dq.isEmpty() && dq.peekFirst() < left) {
+                    // 如果dq最左侧的元素（也就是最大值的下标）小于窗口，说明窗口已经离开，需要弹出这个元素
                     dq.pollFirst();
                 }
 
