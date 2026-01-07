@@ -1,0 +1,178 @@
+Classfile /Users/siyuezhang/Documents/GitHub/JavaTutorial/Java/src/main/java/org/siyue/utils/TestDemo.class
+  Last modified Jan 6, 2026; size 1422 bytes
+  SHA-256 checksum 0cf17305e5a5353e91157dbafdf881a2e4a055fea66af81bd8c963f31425d35b
+  Compiled from "TestDemo.java"
+public class org.siyue.utils.TestDemo implements java.util.concurrent.locks.Lock
+  minor version: 0
+  major version: 65
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #8                          // org/siyue/utils/TestDemo
+  super_class: #2                         // java/lang/Object
+  interfaces: 1, fields: 2, methods: 8, attributes: 3
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."<init>":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Fieldref           #8.#9          // org/siyue/utils/TestDemo.num:Ljava/lang/Integer;
+   #8 = Class              #10            // org/siyue/utils/TestDemo
+   #9 = NameAndType        #11:#12        // num:Ljava/lang/Integer;
+  #10 = Utf8               org/siyue/utils/TestDemo
+  #11 = Utf8               num
+  #12 = Utf8               Ljava/lang/Integer;
+  #13 = Fieldref           #8.#14         // org/siyue/utils/TestDemo.str:Ljava/lang/String;
+  #14 = NameAndType        #15:#16        // str:Ljava/lang/String;
+  #15 = Utf8               str
+  #16 = Utf8               Ljava/lang/String;
+  #17 = InvokeDynamic      #0:#18         // #0:makeConcatWithConstants:(Ljava/lang/Integer;Ljava/lang/String;)Ljava/lang/String;
+  #18 = NameAndType        #19:#20        // makeConcatWithConstants:(Ljava/lang/Integer;Ljava/lang/String;)Ljava/lang/String;
+  #19 = Utf8               makeConcatWithConstants
+  #20 = Utf8               (Ljava/lang/Integer;Ljava/lang/String;)Ljava/lang/String;
+  #21 = Class              #22            // java/util/concurrent/locks/Lock
+  #22 = Utf8               java/util/concurrent/locks/Lock
+  #23 = Utf8               (Ljava/lang/Integer;Ljava/lang/String;)V
+  #24 = Utf8               Code
+  #25 = Utf8               LineNumberTable
+  #26 = Utf8               show
+  #27 = Utf8               ()Ljava/lang/String;
+  #28 = Utf8               lock
+  #29 = Utf8               lockInterruptibly
+  #30 = Utf8               Exceptions
+  #31 = Class              #32            // java/lang/InterruptedException
+  #32 = Utf8               java/lang/InterruptedException
+  #33 = Utf8               tryLock
+  #34 = Utf8               ()Z
+  #35 = Utf8               (JLjava/util/concurrent/TimeUnit;)Z
+  #36 = Utf8               unlock
+  #37 = Utf8               newCondition
+  #38 = Utf8               ()Ljava/util/concurrent/locks/Condition;
+  #39 = Utf8               SourceFile
+  #40 = Utf8               TestDemo.java
+  #41 = Utf8               BootstrapMethods
+  #42 = String             #43            // Number: \u0001, String: \u0001
+  #43 = Utf8               Number: \u0001, String: \u0001
+  #44 = MethodHandle       6:#45          // REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #45 = Methodref          #46.#47        // java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #46 = Class              #48            // java/lang/invoke/StringConcatFactory
+  #47 = NameAndType        #19:#49        // makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #48 = Utf8               java/lang/invoke/StringConcatFactory
+  #49 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+  #50 = Utf8               InnerClasses
+  #51 = Class              #52            // java/lang/invoke/MethodHandles$Lookup
+  #52 = Utf8               java/lang/invoke/MethodHandles$Lookup
+  #53 = Class              #54            // java/lang/invoke/MethodHandles
+  #54 = Utf8               java/lang/invoke/MethodHandles
+  #55 = Utf8               Lookup
+{
+  private java.lang.Integer num;
+    descriptor: Ljava/lang/Integer;
+    flags: (0x0002) ACC_PRIVATE
+
+  private java.lang.String str;
+    descriptor: Ljava/lang/String;
+    flags: (0x0002) ACC_PRIVATE
+
+  public org.siyue.utils.TestDemo(java.lang.Integer, java.lang.String);
+    descriptor: (Ljava/lang/Integer;Ljava/lang/String;)V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #7                  // Field num:Ljava/lang/Integer;
+         9: aload_0
+        10: aload_2
+        11: putfield      #13                 // Field str:Ljava/lang/String;
+        14: return
+      LineNumberTable:
+        line 15: 0
+        line 16: 4
+        line 17: 9
+        line 18: 14
+
+  public java.lang.String show();
+    descriptor: ()Ljava/lang/String;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: aload_0
+         1: getfield      #7                  // Field num:Ljava/lang/Integer;
+         4: aload_0
+         5: getfield      #13                 // Field str:Ljava/lang/String;
+         8: invokedynamic #17,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/Integer;Ljava/lang/String;)Ljava/lang/String;
+        13: areturn
+      LineNumberTable:
+        line 21: 0
+
+  public void lock();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 26: 0
+
+  public void lockInterruptibly() throws java.lang.InterruptedException;
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 32: 0
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  public boolean tryLock();
+    descriptor: ()Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 36: 0
+
+  public boolean tryLock(long, java.util.concurrent.TimeUnit) throws java.lang.InterruptedException;
+    descriptor: (JLjava/util/concurrent/TimeUnit;)Z
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=4, args_size=3
+         0: iconst_0
+         1: ireturn
+      LineNumberTable:
+        line 41: 0
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  public void unlock();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 47: 0
+
+  public java.util.concurrent.locks.Condition newCondition();
+    descriptor: ()Ljava/util/concurrent/locks/Condition;
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aconst_null
+         1: areturn
+      LineNumberTable:
+        line 51: 0
+}
+SourceFile: "TestDemo.java"
+BootstrapMethods:
+  0: #44 REF_invokeStatic java/lang/invoke/StringConcatFactory.makeConcatWithConstants:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #42 Number: \u0001, String: \u0001
+InnerClasses:
+  public static final #55= #51 of #53;    // Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
