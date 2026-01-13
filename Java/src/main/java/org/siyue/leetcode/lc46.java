@@ -2,24 +2,24 @@ package org.siyue.leetcode;
 
 import java.util.*;
 
-public class lc17 {
+public class lc46 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
-        String digits = "23";
-        List<String> result = solution.letterCombinations(digits);
+        int[] nums = {1, 2, 3};
+        List<List<Integer>> result = solution.permute(nums);
         System.out.println(result);
         
-        String digits2 = "";
-        List<String> result2 = solution.letterCombinations(digits2);
+        int[] nums2 = {0, 1};
+        List<List<Integer>> result2 = solution.permute(nums2);
         System.out.println(result2);
         
-        String digits3 = "2";
-        List<String> result3 = solution.letterCombinations(digits3);
+        int[] nums3 = {1};
+        List<List<Integer>> result3 = solution.permute(nums3);
         System.out.println(result3);
     }
 
     static class Solution {
-        public List<String> letterCombinations(String digits) {
+        public List<List<Integer>> permute(int[] nums) {
             // TODO: 实现方法
             return new ArrayList<>();
         }
