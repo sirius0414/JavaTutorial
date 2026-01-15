@@ -18,7 +18,18 @@ public class lc189 {
 
     static class Solution {
         public void rotate(int[] nums, int k) {
-            // TODO: 实现方法
+
+            k = k % nums.length;
+
+            int [] result = new int[nums.length];
+            for (int i = 0; i < nums.length; i++) {
+                if (i + k < nums.length) {
+                    result[i + k] = nums[i];
+                } else {
+                    result[i + k - nums.length] = nums[i];
+                }
+            }
+            System.arraycopy(result, 0, nums, 0, result.length);
         }
     }
 }
