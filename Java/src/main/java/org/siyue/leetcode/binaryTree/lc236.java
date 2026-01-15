@@ -27,5 +27,11 @@ public class lc236 {
         TreeNode left;
         TreeNode right;
         TreeNode(int x) { val = x; }
+
+        public TreeNode(int x, TreeNode treeNode, TreeNode treeNode1) {
+            this.val = x;
+            this.left = treeNode;
+            this.right = treeNode1;
+        }
     }
 }
