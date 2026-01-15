@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.dp;
 
 public class lc152 {
     public static void main(String[] args) throws InterruptedException {

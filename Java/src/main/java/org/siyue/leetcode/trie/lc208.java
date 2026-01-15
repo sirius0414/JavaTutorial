@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.trie;
 
 public class lc208 {
     public static void main(String[] args) throws InterruptedException {

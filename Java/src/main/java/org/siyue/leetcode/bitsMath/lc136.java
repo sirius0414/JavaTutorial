@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.bitsMath;
 
 public class lc136 {
     public static void main(String[] args) throws InterruptedException {

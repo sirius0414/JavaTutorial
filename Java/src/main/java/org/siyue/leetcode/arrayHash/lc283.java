@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.arrayHash;
 
 public class lc283 {
     public static void main(String[] args) throws InterruptedException {

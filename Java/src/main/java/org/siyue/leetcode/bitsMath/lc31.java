@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.bitsMath;
 
 import java.util.Arrays;
 

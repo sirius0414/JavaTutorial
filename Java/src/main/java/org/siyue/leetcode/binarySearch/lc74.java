@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.binarySearch;
 
 public class lc74 {
     public static void main(String[] args) throws InterruptedException {

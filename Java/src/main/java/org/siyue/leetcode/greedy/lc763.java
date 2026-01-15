@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.greedy;
 
 import java.util.*;
 

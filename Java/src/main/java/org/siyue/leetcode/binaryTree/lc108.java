@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.binaryTree;
 
 public class lc108 {
     public static void main(String[] args) throws InterruptedException {

@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.greedy;
 
 public class lc55 {
     public static void main(String[] args) throws InterruptedException {

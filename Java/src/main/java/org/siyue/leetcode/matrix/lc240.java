@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.matrix;
 
 public class lc240 {
     public static void main(String[] args) throws InterruptedException {

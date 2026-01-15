@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.slidingWindow;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

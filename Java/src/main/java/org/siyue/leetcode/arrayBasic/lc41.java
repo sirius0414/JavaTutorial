@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.arrayBasic;
 
 public class lc41 {
     public static void main(String[] args) throws InterruptedException {

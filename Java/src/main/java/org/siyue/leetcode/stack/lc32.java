@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.stack;
 
 public class lc32 {
     public static void main(String[] args) throws InterruptedException {

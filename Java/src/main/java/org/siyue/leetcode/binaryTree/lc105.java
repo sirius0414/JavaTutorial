@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.binaryTree;
 
 import java.util.*;
 

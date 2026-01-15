@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.linkedList;
 
 public class lc206 {
     public static void main(String[] args) throws InterruptedException {

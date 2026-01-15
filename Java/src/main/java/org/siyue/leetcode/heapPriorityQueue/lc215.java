@@ -1,4 +1,4 @@
-package org.siyue.leetcode;
+package org.siyue.leetcode.heapPriorityQueue;
 
 public class lc215 {
     public static void main(String[] args) throws InterruptedException {
