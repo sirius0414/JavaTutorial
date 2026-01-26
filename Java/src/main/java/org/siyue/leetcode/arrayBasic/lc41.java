@@ -1,5 +1,7 @@
 package org.siyue.leetcode.arrayBasic;
 
+import java.util.Arrays;
+
 public class lc41 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -18,8 +20,20 @@ public class lc41 {
 
     static class Solution {
         public int firstMissingPositive(int[] nums) {
-            // TODO: 实现方法
-            return 0;
+            nums = Arrays.stream(nums).sorted().toArray();
+            int first = 0;
+            int next = first;
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] > 0) {
+                    next = nums[i];
+                    if (next - first <= 1) {
+                        first = next;
+                    } else {
+                        return first + 1;
+                    }
+                }
+            }
+            return first + 1;
         }
     }
 }

@@ -16,8 +16,34 @@ public class lc238 {
 
     static class Solution {
         public int[] productExceptSelf(int[] nums) {
-            // TODO: 实现方法
-            return new int[0];
+            int[] preflixSum = new int[nums.length];
+            int[] postflixSum = new int[nums.length];
+
+            int p1 = 0, p2 = 0;
+            for (int i = 0; i < nums.length; i++) {
+                if (i == 0) {
+                    p1 = nums[i];
+                    p2 = nums[nums.length - 1 - i];
+                } else {
+                    p1 = p1 * nums[i];
+                    p2 = p2 * nums[nums.length - 1 - i];
+                }
+                preflixSum[i] = p1;
+                postflixSum[nums.length - 1 - i] = p2;
+            }
+
+            int[] result = new int[nums.length];
+            for (int i = 0; i < nums.length; i++) {
+                if (i == 0) {
+                    result[i] = postflixSum[i + 1];
+                } else if (i == nums.length - 1) {
+                    result[i] = preflixSum[i - 1];
+                } else {
+                    result[i] = preflixSum[i - 1] * postflixSum[i + 1];
+                }
+            }
+
+            return result;
         }
     }
 }
