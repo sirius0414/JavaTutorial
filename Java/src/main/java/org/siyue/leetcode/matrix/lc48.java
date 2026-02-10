@@ -16,7 +16,24 @@ public class lc48 {
 
     static class Solution {
         public void rotate(int[][] matrix) {
-            // TODO: 实现方法
+            int n = matrix.length;
+            // 水平线翻转
+            for (int i = 0; i < n / 2; i++) {
+                for (int j = 0; j < n; j++) {
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[n - 1 - i][j];
+                    matrix[n - 1 - i][j] = temp;
+                }
+            }
+
+            // 2) 主对角线翻转（转置）
+            for (int i = 0; i < n; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    int tmp = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = tmp;
+                }
+            }
         }
     }
 }

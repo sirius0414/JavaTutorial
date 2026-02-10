@@ -1,5 +1,7 @@
 package org.siyue.leetcode.linkedList;
 
+import java.util.List;
+
 public class lc206 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -14,8 +16,16 @@ public class lc206 {
 
     static class Solution {
         public ListNode reverseList(ListNode head) {
-            // TODO: 实现方法
-            return null;
+            ListNode prev = null;
+            ListNode curr = head;
+            while (curr != null) {
+                ListNode next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+
+            return prev;
         }
     }
 

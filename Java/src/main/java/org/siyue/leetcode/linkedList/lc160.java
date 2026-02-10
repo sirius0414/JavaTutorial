@@ -1,5 +1,8 @@
 package org.siyue.leetcode.linkedList;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class lc160 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -28,7 +31,22 @@ public class lc160 {
 
     static class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-            // TODO: 实现方法
+            HashSet<ListNode> set = new HashSet<>();
+
+            ListNode node = headA;
+
+            while (node != null) {
+                set.add(node);
+                node = node.next;
+            }
+
+            while (headB != null) {
+                if (set.contains(headB)) {
+                    return headB;
+                }
+                headB = headB.next;
+            }
+
             return null;
         }
     }
