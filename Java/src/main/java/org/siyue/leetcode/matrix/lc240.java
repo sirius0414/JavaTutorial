@@ -16,6 +16,17 @@ public class lc240 {
     static class Solution {
         public boolean searchMatrix(int[][] matrix, int target) {
             // TODO: 实现方法
+            if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return false;
+
+            int m = matrix.length, n = matrix[0].length;
+            int r = 0, c = n - 1; // 右上角
+
+            while (r < m && c >= 0) {
+                int cur = matrix[r][c];
+                if (cur == target) return true;
+                if (cur > target) c--;      // 去掉一列
+                else r++;                   // 去掉一行
+            }
             return false;
         }
     }
