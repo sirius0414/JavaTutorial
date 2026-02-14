@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class LifecycleConfig {
 
-    @Bean(initMethod = "customInitMethod")
+    @Bean(initMethod = "warmUpRiskCache")
     public PaymentService paymentService() {
         return new PaymentService();
     }

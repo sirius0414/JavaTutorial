@@ -17,9 +17,13 @@ public class SpringLifecycleDemoApplication {
     @Bean
     public CommandLineRunner lifecycleRunner(PaymentService paymentService) {
         return args -> {
-            System.out.println("\n========= Trigger business method to verify AOP proxy =========");
-            paymentService.pay("order-20260214");
-            System.out.println("===============================================================\n");
+            System.out.println("\n========= trigger payment risk-check business =========");
+
+            paymentService.pay(new PaymentRequest("order-001", "m-video", "10.13.4.8", 3200));
+            paymentService.pay(new PaymentRequest("order-002", "m-oversea", "8.8.8.8", 12000));
+            paymentService.pay(new PaymentRequest("order-003", "m-digital", "43.99.0.1", 200));
+
+            System.out.println("========================================================\n");
         };
     }
 }

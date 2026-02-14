@@ -1,23 +1,66 @@
-# Spring Bean 生命周期（initializeBean）工程化 Demo
+# Spring Bean 生命周期（initializeBean）业务化 Demo
 
-本示例对应笔记 `SpringPrinciple.md` 中的 **1.1.3.6 实例化阶段 / initializeBean()**，演示如下顺序：
+本示例不再只是“打印生命周期”，而是做了一个**支付风控服务**场景：
 
-1. **Aware**
-2. **BeforeInitialization BeanPostProcessor**
-   - `@PostConstruct` 在这一阶段执行
-3. **invokeInitMethods**
-   - `afterPropertiesSet`
-   - `init-method`
-4. **AfterInitialization BeanPostProcessor**
-   - AOP 在这里创建代理（返回代理对象）
+- 输入：订单号、商户、IP、金额
+- 输出：风控分数 + 处理动作（PASS / MANUAL_REVIEW）
+- 规则来源：多个 `RiskRuleProvider` Bean 聚合
 
-## 目录
+并把 `initializeBean()` 的 4 段落在实际业务里：
 
-- `LifecycleConfig`：`@Bean(initMethod = "customInitMethod")`
-- `PaymentService`：实现 `BeanNameAware` / `BeanFactoryAware` / `ApplicationContextAware` / `InitializingBean`，并包含 `@PostConstruct`
-- `LifecycleLoggingBeanPostProcessor`：打印 before/after 初始化阶段
-- `PaymentAuditAspect`：AOP 切面，验证代理生效
-- `SpringLifecycleDemoApplication`：启动后通过 `CommandLineRunner` 调用业务方法
+---
+
+## 1) Aware
+
+`PaymentService` 实现：
+
+- `BeanNameAware`
+- `BeanFactoryAware`
+- `ApplicationContextAware`
+
+业务价值：
+- 获取 Bean 名用于统一审计日志标识
+- 拿到 `ApplicationContext`，后续在 `afterPropertiesSet` 聚合所有规则提供器 Bean
+
+---
+
+## 2) BeforeInitialization BPP（`@PostConstruct` 在此阶段）
+
+- `LifecycleLoggingBeanPostProcessor#postProcessBeforeInitialization`
+  - 统一注入“人工审核阈值”策略（`manualReviewThreshold=85`）
+- `PaymentService#prepareEmergencyData` (`@PostConstruct`)
+  - 加载应急黑名单 IP
+  - 加载商户基础风险画像
+
+业务价值：
+- 在 Bean 正式初始化前，注入策略和兜底数据，防止服务启动后“空规则运行”
+
+---
+
+## 3) invokeInitMethods
+
+- `afterPropertiesSet`
+  - 从容器中聚合全部 `RiskRuleProvider`，形成统一规则集
+  - 若规则为空则 fail-fast
+- `init-method = warmUpRiskCache`
+  - 进行风险缓存/模型预热（示例为基础风险缓存预热）
+
+业务价值：
+- 把“可用性校验 + 预热”放在初始化末端，确保对外服务前已 ready
+
+---
+
+## 4) AfterInitialization BPP（AOP 在此生成代理）
+
+- `LifecycleLoggingBeanPostProcessor#postProcessAfterInitialization`
+  - 检查 `paymentService` 是否已被 AOP 代理
+- `PaymentAuditAspect`
+  - 拦截 `PaymentService.pay(..)` 做耗时审计日志
+
+业务价值：
+- 代理在 after-initialization 阶段形成，业务方法天然获得横切能力（审计、限流、重试等）
+
+---
 
 ## 运行
 
@@ -26,24 +69,10 @@ cd Spring
 ./mvnw spring-boot:run
 ```
 
-## 预期日志（关键片段）
+## 关键类
 
-```text
-[Aware] BeanNameAware#setBeanName -> paymentService
-[Aware] BeanFactoryAware#setBeanFactory -> DefaultListableBeanFactory
-[Aware] ApplicationContextAware#setApplicationContext -> AnnotationConfigApplicationContext
-
-[BeforeInitialization BPP] postProcessBeforeInitialization -> paymentService
-[BeforeInitialization BPP phase] @PostConstruct executed
-
-[invokeInitMethods] InitializingBean#afterPropertiesSet executed
-[invokeInitMethods] init-method(customInitMethod) executed
-
-[AfterInitialization BPP] postProcessAfterInitialization -> paymentService (beanClass=...PaymentService$$SpringCGLIB$$...)
-
-[AOP Proxy] before method -> PaymentService.pay(..)
-[Business] PaymentService.pay -> processing order-20260214
-[AOP Proxy] after method -> PaymentService.pay(..)
-```
-
-> 说明：实际顺序中，`@PostConstruct` 由 `CommonAnnotationBeanPostProcessor` 在 before-initialization 阶段触发。
+- `PaymentService`：核心业务 Bean（完整生命周期演示）
+- `RiskRuleProvider` + `AmountRiskRuleProvider` + `IpRiskRuleProvider`：规则扩展点
+- `LifecycleLoggingBeanPostProcessor`：before/after 初始化业务注入与校验
+- `PaymentAuditAspect`：AOP 审计
+- `SpringLifecycleDemoApplication`：启动后触发三笔风控判定
