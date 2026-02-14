@@ -1,5 +1,8 @@
 package org.siyue.leetcode.linkedList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class lc234 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -14,8 +17,22 @@ public class lc234 {
 
     static class Solution {
         public boolean isPalindrome(ListNode head) {
-            // TODO: 实现方法
-            return false;
+            List<Integer> list = new ArrayList<>();
+            while (head != null && head.next != null) {
+                list.add(head.val);
+                head = head.next;
+            }
+            list.add(head.val);
+            int left = 0, right = list.size() - 1;
+            while (left < right) {
+                if (!list.get(left).equals(list.get(right))) {
+                    return false;
+                }
+                left++;
+                right--;
+            }
+
+            return true;
         }
     }
 
