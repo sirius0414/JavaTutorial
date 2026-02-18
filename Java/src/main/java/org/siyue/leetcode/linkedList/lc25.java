@@ -28,7 +28,8 @@ public class lc25 {
                 // 判断是否还有 k 个节点，并拿到下一组的起点 nextGroup
                 ListNode nextGroup = cur;
                 for (int i = 0; i < k; i++) {
-                    if (nextGroup == null) { // 不足 k 个，直接结束
+                    if (nextGroup == null) {
+                        // 不足 k 个，直接结束
                         return dummyHead.next;
                     }
                     nextGroup = nextGroup.next;
