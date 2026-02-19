@@ -1,5 +1,7 @@
 package org.siyue.leetcode.linkedList;
 
+import java.util.HashMap;
+
 public class lc138 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -20,8 +22,27 @@ public class lc138 {
 
     static class Solution {
         public Node copyRandomList(Node head) {
-            // TODO: 实现方法
-            return null;
+            HashMap<Node, Node> map = new HashMap<Node, Node>();
+
+            Node cur = head;
+            while (cur != null) {
+                // 用一个HashMap把新老链表的每一项做个映射
+                map.put(cur, new Node(cur.val));
+                cur = cur.next;
+            }
+
+            // Wired the Next and Random pointers
+            cur  = head;
+            while (cur != null) {
+                // copy是新的链表中的对应项
+                Node copy = map.get(cur);
+                // copt 的next pointer就可以从map去找
+                copy.next = map.get(cur.next);
+                copy.random = map.get(cur.random);
+                cur = cur.next;
+            }
+
+            return map.get(head);
         }
     }
 
