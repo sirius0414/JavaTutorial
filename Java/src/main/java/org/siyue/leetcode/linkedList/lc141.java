@@ -1,5 +1,8 @@
 package org.siyue.leetcode.linkedList;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class lc141 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -28,7 +31,15 @@ public class lc141 {
 
     static class Solution {
         public boolean hasCycle(ListNode head) {
-            // TODO: 实现方法
+            ListNode slow = head;
+            ListNode fast = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast) {
+                    return true;
+                }
+            }
             return false;
         }
     }
