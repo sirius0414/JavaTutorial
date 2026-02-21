@@ -1,5 +1,8 @@
 package org.siyue.leetcode.linkedList;
 
+import java.util.HashSet;
+import java.util.List;
+
 public class lc142 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -24,8 +27,31 @@ public class lc142 {
 
     static class Solution {
         public ListNode detectCycle(ListNode head) {
-            // TODO: 实现方法
+            ListNode slow = head;
+            ListNode fast = head;
+
+            HashSet<ListNode> set = new HashSet<>();
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast) {
+                    while (!set.contains(slow)) {
+                        set.add(slow);
+                        slow = slow.next;
+                    }
+                    ListNode result = head;
+                    while (!set.contains(result)) {
+                        result = result.next;
+                    }
+                    return result;
+                }
+            }
             return null;
+            //  O(1) 思路（Floyd）
+            //	1.	用 slow 每次走 1 步，fast 每次走 2 步；
+            //	2.	若相遇，说明有环；
+            //	3.	让一个指针从 head 出发，另一个指针从相遇点出发，每次都走 1 步；
+            //	4.	两者再次相遇的位置就是 入环点。
         }
     }
 
