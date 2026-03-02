@@ -1,5 +1,11 @@
 package org.siyue.leetcode.binaryTree;
 
+import com.sun.source.tree.Tree;
+
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
 public class lc114 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -14,7 +20,24 @@ public class lc114 {
 
     static class Solution {
         public void flatten(TreeNode root) {
-            // TODO: 实现方法
+            // 一次操作意味着把左node扩充到root和右node之间
+            TreeNode cur = root;
+
+            while (cur!=null) {
+                if (cur.left!=null) {
+                    // 找到左子树的最右节点
+                    TreeNode pred = cur.left;
+                    while (pred.right != null) {
+                        pred = pred.right;
+                    }
+                    // 左子树的最右节点的下一个需要是父节点的右节点
+                    pred.right = cur.right;
+                    // 左子树接过来
+                    cur.right = cur.left;
+                    cur.left = null;
+                }
+                cur = cur.right;
+            }
         }
     }
 

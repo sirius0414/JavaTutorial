@@ -14,8 +14,26 @@ public class lc101 {
 
     static class Solution {
         public boolean isSymmetric(TreeNode root) {
-            // TODO: 实现方法
-            return false;
+            if (root.left == null && root.right == null) {
+                return true;
+            }
+            if (root.left == null || root.right == null) {
+                return false;
+            }
+            return dfs(root.left, root.right, true);
+        }
+
+        public boolean dfs(TreeNode left, TreeNode right, boolean isSymmetric) {
+            if (left == null && right == null) {
+                return true;
+            }
+            if (left == null || right == null) {
+                return false;
+            }
+            if (left.val != right.val) {
+                return false;
+            }
+            return dfs(left.left, right.right, isSymmetric) && dfs(left.right, right.left, isSymmetric);
         }
     }
 

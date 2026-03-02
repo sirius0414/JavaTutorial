@@ -16,8 +16,33 @@ public class lc102 {
 
     static class Solution {
         public List<List<Integer>> levelOrder(TreeNode root) {
-            // TODO: 实现方法
-            return new ArrayList<>();
+            if (root == null) {
+                return new ArrayList<>();
+            }
+            List<List<Integer>> result = new ArrayList<>();
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+
+            while (!queue.isEmpty()) {
+                int len = queue.size();
+                List<Integer> level = new ArrayList<>();
+                for (int i = 0; i < len; i++) {
+                    TreeNode node = queue.poll();
+
+                    level.add(node.val);
+                    if (node.left != null) {
+                        queue.offer(node.left);
+                    }
+                    if (node.right != null) {
+                        queue.offer(node.right);
+                    }
+                }
+                if (!level.isEmpty()) {
+                    result.add(level);
+                }
+            }
+
+            return result;
         }
     }
 

@@ -13,9 +13,25 @@ public class lc543 {
     }
 
     static class Solution {
+
+        int maxDiameter = 0;
+
         public int diameterOfBinaryTree(TreeNode root) {
-            // TODO: 实现方法
-            return 0;
+            dfs(root);
+            return maxDiameter;
+        }
+
+        public int dfs(TreeNode node) {
+            if (node == null) {
+                return 0;
+            }
+            int leftDepth = dfs(node.left);
+            int rightDepth = dfs(node.right);
+            int diameter = leftDepth + rightDepth;
+            // 更新全局最大直径
+            maxDiameter = Math.max(maxDiameter, diameter);
+            // 返回当前节点的深度
+            return Math.max(leftDepth, rightDepth) + 1;
         }
     }
 

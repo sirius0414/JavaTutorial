@@ -16,8 +16,39 @@ public class lc199 {
 
     static class Solution {
         public List<Integer> rightSideView(TreeNode root) {
-            // TODO: 实现方法
-            return new ArrayList<>();
+            List<List<Integer>> list = new ArrayList<>();
+            list = bfs(root);
+            List<Integer> res = new ArrayList<>();
+
+            if(list == null) return res;
+
+            res = list.stream().map(
+                    l -> l.getLast()
+            ).toList();
+            return res;
+        }
+
+        // 层序遍历
+        public List<List<Integer>> bfs(TreeNode root) {
+            Queue<TreeNode> que = new LinkedList<>();
+            List<List<Integer>> result = new ArrayList<>();
+
+            if (root == null) return result;
+
+            que.offer(root);
+            while (!que.isEmpty()) {
+                int len = que.size();
+                List<Integer> list = new ArrayList();
+                for (int i = 0; i < len; i++){
+                    TreeNode cur = que.poll();
+                    list.add(cur.val);
+                    // Add Child Nodes
+                    if (cur.left != null) que.offer(cur.left);
+                    if (cur.right != null) que.offer(cur.right);
+                }
+                result.add(list);
+            }
+            return result;
         }
     }
 

@@ -1,5 +1,8 @@
 package org.siyue.leetcode.binaryTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class lc230 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -16,8 +19,22 @@ public class lc230 {
 
     static class Solution {
         public int kthSmallest(TreeNode root, int k) {
-            // TODO: 实现方法
-            return 0;
+            ArrayList<Integer> list = new ArrayList<>();
+            Integer ans = inorderTraversal(root, list, k);
+            // 题目通常保证 k 合法；否则这里需要处理 ans==null
+            return ans;
+        }
+
+        public Integer inorderTraversal(TreeNode node, List<Integer> list, int k) {
+            if (node == null) return null;
+
+            Integer left = inorderTraversal(node.left, list, k);
+            if (left != null) return left;          // ✅ 左边找到就立刻返回
+
+            list.add(node.val);
+            if (list.size() == k) return node.val;  // ✅ 当前就是第 k 个，立刻返回
+
+            return inorderTraversal(node.right, list, k); // ✅ 只在没找到时才去右边
         }
     }
 

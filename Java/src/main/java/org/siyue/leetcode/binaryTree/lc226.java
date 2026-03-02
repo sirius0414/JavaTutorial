@@ -14,8 +14,13 @@ public class lc226 {
 
     static class Solution {
         public TreeNode invertTree(TreeNode root) {
-            // TODO: 实现方法
-            return null;
+            if (root == null) {
+                return null;
+            }
+            TreeNode left = invertTree(root.left);
+            root.left = invertTree(root.right);
+            root.right = left;
+            return root;
         }
     }
 
