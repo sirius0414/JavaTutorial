@@ -14,8 +14,11 @@ public class lc104 {
 
     static class Solution {
         public int maxDepth(TreeNode root) {
-            // TODO: 实现方法
-            return 0;
+            if (root == null) {
+                return 0;
+            } else {
+                return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+            }
         }
     }
 
