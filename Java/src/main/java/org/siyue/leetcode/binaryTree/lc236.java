@@ -1,5 +1,8 @@
 package org.siyue.leetcode.binaryTree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class lc236 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -17,8 +20,31 @@ public class lc236 {
 
     static class Solution {
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            // TODO: 实现方法
-            return null;
+            List<TreeNode> pathP = new ArrayList<>();
+            List<TreeNode> pathQ = new ArrayList<>();
+            findPath(root, p, pathP);
+            findPath(root, q, pathQ);
+
+            int i = 0;
+            while (i < pathP.size() && i < pathQ.size() && pathP.get(i) == pathQ.get(i)) {
+                i++;
+            }
+            return pathP.get(i - 1);
+        }
+
+        private boolean findPath(TreeNode root, TreeNode target, List<TreeNode> path) {
+            if (root == null) return false;
+
+            path.add(root);
+            if (root == target) return true;
+
+            if (findPath(root.left, target, path) || findPath(root.right, target, path)) {
+                return true;
+            }
+
+            // 回溯：这条路不通，撤销
+            path.remove(path.size() - 1);
+            return false;
         }
     }
 

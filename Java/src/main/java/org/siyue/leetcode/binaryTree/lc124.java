@@ -13,9 +13,30 @@ public class lc124 {
     }
 
     static class Solution {
+        int ans = Integer.MIN_VALUE;
+
         public int maxPathSum(TreeNode root) {
-            // TODO: 实现方法
-            return 0;
+            dfs(root);
+            return ans;
+        }
+
+        private int dfs(TreeNode node) {
+            if (node == null) {
+                return 0;
+            }
+
+            // 左右子树对当前节点的最大贡献，负数就不要
+            int leftGain = Math.max(dfs(node.left), 0);
+            int rightGain = Math.max(dfs(node.right), 0);
+
+            // 以当前节点为“拐点”的最大路径和
+            int currentPathSum = node.val + leftGain + rightGain;
+
+            // 更新全局答案
+            ans = Math.max(ans, currentPathSum);
+
+            // 返回给父节点的最大单边贡献
+            return node.val + Math.max(leftGain, rightGain);
         }
     }
 
