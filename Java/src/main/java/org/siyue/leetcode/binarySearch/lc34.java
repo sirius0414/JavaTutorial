@@ -23,8 +23,32 @@ public class lc34 {
 
     static class Solution {
         public int[] searchRange(int[] nums, int target) {
-            // TODO: 实现方法
-            return new int[0];
+            int left = lowerBound(nums, target);       // 第一个 >= target 的位置
+            int right = lowerBound(nums, target + 1) - 1; // 第一个 >= target+1 的位置，再减 1
+
+            if (left == nums.length || nums[left] != target) {
+                return new int[]{-1, -1};
+            }
+
+            return new int[]{left, right};
+        }
+
+        // 返回第一个 >= target 的下标
+        private int lowerBound(int[] nums, int target) {
+            int left = 0;
+            int right = nums.length; // 注意：右边界开区间
+
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+
+                if (nums[mid] < target) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
+                }
+            }
+
+            return left;
         }
     }
 }

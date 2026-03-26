@@ -21,8 +21,35 @@ public class lc35 {
 
     static class Solution {
         public int searchInsert(int[] nums, int target) {
-            // TODO: 实现方法
-            return 0;
+            int left = 0;
+            int right = nums.length - 1;
+
+            if (target <= nums[0]) {
+                return 0;
+            }
+
+            if (target > nums[right]) {
+                return nums.length;
+            }
+
+            while (right - left > 1) {
+                int midIndex = (left + right) / 2;
+                int midVal = nums[midIndex];
+                if (target == midVal) {
+                    return midIndex;
+                } else if (target < midVal) {
+                    // 在左侧，right收缩
+                    right = midIndex;
+                } else if (target > midVal) {
+                    left = midIndex;
+                }
+            }
+
+            if (nums[right] == target) {
+                return right;
+            }
+
+            return right;
         }
     }
 }
