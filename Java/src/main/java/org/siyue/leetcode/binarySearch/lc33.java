@@ -21,7 +21,52 @@ public class lc33 {
 
     static class Solution {
         public int search(int[] nums, int target) {
-            // TODO: 实现方法
+            int l = 0;
+            int r = nums.length - 1;
+
+            int leftVal = nums[l];
+            int rightVal = nums[r];
+
+            if (nums.length <= 2) {
+                //  Go throught
+                for (int i = l; i <= r; i++) {
+                    if (nums[i] == target) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            while (r - l >= 0) {
+                int mid = (l + r) / 2;
+                int midVal = nums[mid];
+                leftVal = nums[l];
+                rightVal = nums[r];
+
+                if (midVal == target) {
+                    return mid;
+                }
+
+                // shrink
+                if (leftVal > midVal) {
+                    // rotation point at left of mid
+                    if  (target > midVal && target <= nums[r]) {
+                        // shrink right
+                        l = mid + 1;
+                    } else {
+                        r = mid - 1;
+                    }
+                } else {
+                    // rotation point at right of mid
+                    if (target < midVal && target >= nums[l]) {
+                        // shrink left
+                        r = mid - 1;
+                    } else  {
+                        l = mid + 1;
+                    }
+                }
+            }
+
             return -1;
         }
     }

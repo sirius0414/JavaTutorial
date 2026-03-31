@@ -16,8 +16,27 @@ public class lc4 {
 
     static class Solution {
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-            // TODO: 实现方法
-            return 0.0;
+            int l1, r1;
+            int l2, r2;
+
+            l1 = 0;
+            l2 = 0;
+            r1 = nums1.length;
+            r2 = nums2.length;
+
+
+            while (l1 < r1 && l2 < r2) {
+                // do binary search for two nums:
+                int m1 = (l1 + r1) / 2;
+                int m2 = (l2 + r2) / 2;
+
+                if (nums1[m1] >= nums2[m2]) {
+                    return nums1[m1];
+                }
+
+            }
+
+
         }
     }
 }
