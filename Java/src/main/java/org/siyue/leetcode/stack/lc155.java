@@ -1,5 +1,7 @@
 package org.siyue.leetcode.stack;
 
+import java.util.Stack;
+
 public class lc155 {
     public static void main(String[] args) throws InterruptedException {
         MinStack minStack = new MinStack();
@@ -13,26 +15,37 @@ public class lc155 {
     }
 
     static class MinStack {
+        // 可以扩展想想 O1额外空间要如何实现
+        // hint；利用差值diff
+        private Stack<Integer> stack;
+        private Stack<Integer> minStack;
+
         public MinStack() {
-            // TODO: 实现构造函数
+            stack = new Stack<>();
+            minStack = new Stack<>();
         }
 
         public void push(int val) {
-            // TODO: 实现方法
+            stack.push(val);
+
+            if (minStack.isEmpty()) {
+                minStack.push(val);
+            } else {
+                minStack.push(Math.min(val, minStack.peek()));
+            }
         }
 
         public void pop() {
-            // TODO: 实现方法
+            stack.pop();
+            minStack.pop();
         }
 
         public int top() {
-            // TODO: 实现方法
-            return 0;
+            return stack.peek();
         }
 
         public int getMin() {
-            // TODO: 实现方法
-            return 0;
+            return minStack.peek();
         }
     }
 }

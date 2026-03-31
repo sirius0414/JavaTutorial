@@ -1,5 +1,7 @@
 package org.siyue.leetcode.stack;
 
+import java.util.Stack;
+
 public class lc20 {
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
@@ -18,8 +20,19 @@ public class lc20 {
 
     static class Solution {
         public boolean isValid(String s) {
-            // TODO: 实现方法
-            return false;
+            Stack<Character> stack = new Stack<>();
+            for (char c : s.toCharArray()) {
+                if (c == '(') {
+                    stack.push(')');
+                } else if (c == '{') {
+                    stack.push('}');
+                } else if (c == '[') {
+                    stack.push(']');
+                } else if (stack.isEmpty() || stack.pop() != c) {
+                    return false;
+                }
+            }
+            return stack.isEmpty();
         }
     }
 }
