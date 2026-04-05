@@ -16,8 +16,24 @@ public class lc90 {
 
     static class Solution {
         public List<List<Integer>> subsetsWithDup(int[] nums) {
-            // TODO: 实现方法
-            return new ArrayList<>();
+            List<List<Integer>> result = new ArrayList<>();
+            Arrays.sort(nums); // 先排序，方便后续去重
+            backTracking(nums, 0, new ArrayList<>(), result);
+            return result;
+        }
+
+        public void backTracking(int[] nums, int i, List<Integer> path, List<List<Integer>> result) {
+
+            result.add(new ArrayList<>(path));
+
+                for (int j = i; j < nums.length; j++) {
+                    if (j > i && nums[j] == nums[j - 1]) {
+                        continue; // 跳过重复元素
+                    }
+                    path.add(nums[j]); // 选择当前元素，加入路径
+                    backTracking(nums, j + 1, path, result); // 递归处理下一个元素
+                    path.remove(path.size() - 1); // 回退，撤销选择
+                }
         }
     }
 }

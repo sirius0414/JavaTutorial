@@ -36,6 +36,7 @@ public class lc4 {
 
             }
 
+            return 0;
 
         }
     }
