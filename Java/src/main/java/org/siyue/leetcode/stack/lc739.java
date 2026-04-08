@@ -20,8 +20,20 @@ public class lc739 {
 
     static class Solution {
         public int[] dailyTemperatures(int[] temperatures) {
-            // TODO: 实现方法
-            return new int[0];
+            // 单调递减栈，存储温度的索引
+            int[] result = new int[temperatures.length];
+            int[] stack = new int[temperatures.length];
+            int top = -1; // 栈顶指针
+
+            for (int i = 0; i < temperatures.length; i++) {
+                while (top >= 0 && temperatures[i] > temperatures[stack[top]]) {
+                    int prevIndex = stack[top--]; // 弹出栈顶索引
+                    result[prevIndex] = i - prevIndex; // 计算等待天数
+                }
+                stack[++top] = i; // 将当前索引入栈
+            }
+
+            return result;
         }
     }
 }
