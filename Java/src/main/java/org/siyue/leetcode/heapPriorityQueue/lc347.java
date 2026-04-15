@@ -1,6 +1,8 @@
 package org.siyue.leetcode.heapPriorityQueue;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class lc347 {
     public static void main(String[] args) throws InterruptedException {
@@ -18,8 +20,17 @@ public class lc347 {
 
     static class Solution {
         public int[] topKFrequent(int[] nums, int k) {
-            // TODO: 实现方法
-            return new int[0];
+            Map<Integer, Integer> freqMap = new HashMap();
+            for (int num : nums) {
+                freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+            }
+
+            return freqMap.entrySet()
+                    .stream()
+                    .sorted((a, b) -> b.getValue() - a.getValue())
+                    .limit(k)
+                    .mapToInt(Map.Entry::getKey)
+                    .toArray();
         }
     }
 }
