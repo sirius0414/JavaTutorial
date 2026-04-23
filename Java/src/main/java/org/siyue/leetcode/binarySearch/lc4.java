@@ -1,6 +1,11 @@
 package org.siyue.leetcode.binarySearch;
 
 public class lc4 {
+    /**
+     * 给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数
+     * @param args
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws InterruptedException {
         Solution solution = new Solution();
         int[] nums1 = {1, 3};
@@ -35,9 +40,7 @@ public class lc4 {
                 }
 
             }
-
-            return 0;
-
+            return 0.0;
         }
     }
 }
